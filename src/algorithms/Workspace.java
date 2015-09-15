@@ -32,7 +32,7 @@ import org.jgrapht.graph.SimpleWeightedGraph;
  *
  * @author Ibarra
  */
-public class Workspace extends javax.swing.JFrame implements ActionListener{
+public class Workspace extends javax.swing.JFrame{
 
     public Workspace() {
         initComponents();
@@ -51,6 +51,14 @@ public class Workspace extends javax.swing.JFrame implements ActionListener{
         lblNext = new javax.swing.JLabel();
         lblPlay = new javax.swing.JLabel();
         lblPrev = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        lblMST = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        lblWeight = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        lblCapacity = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -58,7 +66,9 @@ public class Workspace extends javax.swing.JFrame implements ActionListener{
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparator1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         tabPane.setBackground(new java.awt.Color(51, 204, 0));
 
@@ -98,6 +108,11 @@ public class Workspace extends javax.swing.JFrame implements ActionListener{
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
 
         lblNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/algorithms/next.png"))); // NOI18N
+        lblNext.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblNextMouseClicked(evt);
+            }
+        });
 
         lblPlay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/algorithms/play2.png"))); // NOI18N
         lblPlay.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -107,6 +122,11 @@ public class Workspace extends javax.swing.JFrame implements ActionListener{
         });
 
         lblPrev.setIcon(new javax.swing.ImageIcon(getClass().getResource("/algorithms/prev.png"))); // NOI18N
+        lblPrev.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblPrevMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -134,6 +154,85 @@ public class Workspace extends javax.swing.JFrame implements ActionListener{
 
         lblPrev.getAccessibleContext().setAccessibleName("");
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 102), 2, true), "PRIM", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Trebuchet MS", 1, 14), new java.awt.Color(0, 102, 102))); // NOI18N
+
+        lblMST.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
+        lblMST.setText("-");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(102, 0, 102));
+        jLabel2.setText("Minimum Spanning Tree:");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addContainerGap(29, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblMST, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblMST, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                .addGap(14, 14, 14))
+        );
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 204, 0), 2, true), "Knapsack", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Trebuchet MS", 1, 14), new java.awt.Color(204, 51, 0))); // NOI18N
+
+        lblWeight.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
+        lblWeight.setText("-");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(204, 102, 0));
+        jLabel3.setText("Capacity:");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 102, 153));
+        jLabel4.setText("Total Weight:");
+
+        lblCapacity.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
+        lblCapacity.setText("-");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblCapacity, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(lblCapacity))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(lblWeight))
+                .addContainerGap())
+        );
+
         jMenu1.setText("File");
         jMenu1.setToolTipText("");
         jMenuBar1.add(jMenu1);
@@ -149,28 +248,32 @@ public class Workspace extends javax.swing.JFrame implements ActionListener{
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14)
                 .addComponent(tabPane, javax.swing.GroupLayout.PREFERRED_SIZE, 861, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jSeparator1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(tabPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(497, Short.MAX_VALUE))
+                .addGap(160, 160, 160)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1)
+                    .addComponent(tabPane))
+                .addContainerGap())
         );
 
         tabPane.getAccessibleContext().setAccessibleDescription("");
@@ -179,8 +282,17 @@ public class Workspace extends javax.swing.JFrame implements ActionListener{
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblPlayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPlayMouseClicked
-        startAlgorithm();
+        startAlgorithm(1);
     }//GEN-LAST:event_lblPlayMouseClicked
+
+    private void lblPrevMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPrevMouseClicked
+         startAlgorithm(2);
+        
+    }//GEN-LAST:event_lblPrevMouseClicked
+
+    private void lblNextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNextMouseClicked
+        startAlgorithm(3);
+    }//GEN-LAST:event_lblNextMouseClicked
 
     public static void main(String args[]) {
 
@@ -201,19 +313,28 @@ public class Workspace extends javax.swing.JFrame implements ActionListener{
     } 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lblCapacity;
+    private javax.swing.JLabel lblMST;
     private javax.swing.JLabel lblNext;
     private javax.swing.JLabel lblPlay;
     private javax.swing.JLabel lblPrev;
+    private javax.swing.JLabel lblWeight;
     private javax.swing.JPanel pnlKnap;
     private javax.swing.JPanel pnlPrim;
     private javax.swing.JTabbedPane tabPane;
     // End of variables declaration//GEN-END:variables
 
+    private boolean primLaunched = false;
     private static final Color DEFAULT_BG_COLOR = Color.decode("#FAFBFF");
     private static final Dimension DEFAULT_SIZE = new Dimension(1256, 700);
     private static int count = 65;
@@ -229,22 +350,7 @@ public class Workspace extends javax.swing.JFrame implements ActionListener{
     private int currentPosition = 0;
     private boolean isPlaying = true;
     private Timer timer;
-    private  ListenableUndirectedWeightedGraph<String, DefaultWeightedEdge> g ;
-    
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        
-        if(e.getSource() == lblPlay){
-            isPlaying = !isPlaying;
-            if(!isPlaying){
-                timer.stop();
-                return;
-            }
-
-            startAlgorithm();
-        }
-    }
-    
+    private  ListenableUndirectedWeightedGraph<String, DefaultWeightedEdge> g ;   
     
     private void GraphFactory(){
     
@@ -283,8 +389,7 @@ public class Workspace extends javax.swing.JFrame implements ActionListener{
                 int x = e.getX(), y = e.getY();
                 if(!hasSource && source == null){
                     source = jgraph.getFirstCellForLocation(x, y);
-                    DefaultGraphCell s =(DefaultGraphCell)source;
-                    //s.
+
                     if(source != null)
                         hasSource = true;
                 }else if(hasSource && source != null){
@@ -321,6 +426,7 @@ public class Workspace extends javax.swing.JFrame implements ActionListener{
                     destiny = null;
                 }
               }
+              primLaunched = false; //if a new vertex or edge is created prim has to be relaunch
             }
         });
 
@@ -336,6 +442,7 @@ public class Workspace extends javax.swing.JFrame implements ActionListener{
         primMST.getMinimumSpanningTreeEdgeSet();
         graphColorList = primMST.getGraphList();
         currentPosition = 0;
+        lblMST.setText(String.valueOf(primMST.getMinimumSpanningTreeTotalWeight()));
         paintGraphPosition();
     }
     
@@ -412,7 +519,7 @@ public class Workspace extends javax.swing.JFrame implements ActionListener{
         AttributeMap attr = cell.getAttributes();
         
         if(!color.equals(Color.WHITE))
-            GraphConstants.setForeground(attr, Color.WHITE);
+            GraphConstants.setForeground(attr, Color.BLACK);
         GraphConstants.setBackground(attr,color);
 
         AttributeMap cellAttr = new AttributeMap();
@@ -434,8 +541,25 @@ public class Workspace extends javax.swing.JFrame implements ActionListener{
         jgAdapter.edit(cellAttr, null, null, null);
     }
     
-    private void startAlgorithm(){
-        launchPrim();
+    private void startAlgorithm(int actionIndex){
+        if(!primLaunched){
+            launchPrim();
+            primLaunched = true;
+        }   
+       
+        if(actionIndex == 1)
+            play();
+        else if( actionIndex == 2){
+            if(currentPosition > 0)
+                currentPosition--;
+            paintGraphPosition();
+        }else{
+            currentPosition++;
+            paintGraphPosition();
+        }
+    }
+    
+    private void play(){
         ActionListener a = (ActionEvent evt) -> {
             if(isPlaying && (graphColorList.size() > currentPosition)){
                 currentPosition++;
