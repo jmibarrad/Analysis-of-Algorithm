@@ -35,6 +35,7 @@ public class Workspace extends javax.swing.JFrame implements ActionListener{
 
     public Workspace() {
         initComponents();
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -70,7 +71,7 @@ public class Workspace extends javax.swing.JFrame implements ActionListener{
         );
         pnlPrimLayout.setVerticalGroup(
             pnlPrimLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 580, Short.MAX_VALUE)
+            .addGap(0, 553, Short.MAX_VALUE)
         );
 
         tabPane.addTab("Prim", pnlPrim);
@@ -86,7 +87,7 @@ public class Workspace extends javax.swing.JFrame implements ActionListener{
         );
         pnlKnapLayout.setVerticalGroup(
             pnlKnapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 580, Short.MAX_VALUE)
+            .addGap(0, 553, Short.MAX_VALUE)
         );
 
         tabPane.addTab("Knapsack", pnlKnap);
@@ -130,7 +131,7 @@ public class Workspace extends javax.swing.JFrame implements ActionListener{
                     .addComponent(lblNext)
                     .addComponent(lblPrev)
                     .addComponent(lblPlay))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(523, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -138,7 +139,7 @@ public class Workspace extends javax.swing.JFrame implements ActionListener{
                         .addComponent(jSeparator1))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(tabPane)))
+                        .addComponent(tabPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -160,7 +161,7 @@ public class Workspace extends javax.swing.JFrame implements ActionListener{
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Workspace.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        
+
         java.awt.EventQueue.invokeLater(() -> {
             new Workspace().setVisible(true);
         });
@@ -198,6 +199,7 @@ public class Workspace extends javax.swing.JFrame implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
+        
         if(e.getSource()== lblPlay){
             isPlaying = !isPlaying;
             if(!isPlaying){
@@ -210,7 +212,7 @@ public class Workspace extends javax.swing.JFrame implements ActionListener{
     }
     
     
-    public void GraphFactory(){
+    private void GraphFactory(){
     
         g = new ListenableUndirectedWeightedGraph<>(DefaultWeightedEdge.class);
 
@@ -221,9 +223,9 @@ public class Workspace extends javax.swing.JFrame implements ActionListener{
         jgraph.setSizeable(false);
         jgraph.setEdgeLabelsMovable(false);
         adjustDisplaySettings(jgraph);
-
+        pnlPrim = (JPanel)getContentPane();
         pnlPrim.add(jgraph);
-        
+                
         jgraph.addMouseListener(new MouseAdapter(){
             @Override
             public void mousePressed(MouseEvent e) {
@@ -319,7 +321,7 @@ public class Workspace extends javax.swing.JFrame implements ActionListener{
         jg.setAntiAliased(true);
     }
 
-    @SuppressWarnings("unchecked") // FIXME hb 28-nov-05: See FIXME below
+    @SuppressWarnings("unchecked")
     private void positionVertexAt(Object vertex, int x, int y)
     {
         DefaultGraphCell cell = jgAdapter.getVertexCell(vertex);
@@ -334,7 +336,6 @@ public class Workspace extends javax.swing.JFrame implements ActionListener{
         GraphConstants.setBorder(attr, 
                                 BorderFactory.createMatteBorder(2, 2, 2, 2, Color.black));
 
-        // TODO: Clean up generics once JGraph goes generic
         AttributeMap cellAttr = new AttributeMap();
         cellAttr.put(cell, attr);
         jgAdapter.edit(cellAttr, null, null, null);
