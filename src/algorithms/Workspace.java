@@ -14,11 +14,14 @@ import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import javax.swing.table.DefaultTableModel;
 import org.jgraph.JGraph;
 import org.jgraph.graph.AttributeMap;
 import org.jgraph.graph.DefaultGraphCell;
@@ -50,6 +53,8 @@ public class Workspace extends javax.swing.JFrame{
         pbCapacity = new javax.swing.JProgressBar();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblSet = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        txtCapacity = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         lblNext = new javax.swing.JLabel();
         lblPlay = new javax.swing.JLabel();
@@ -89,7 +94,7 @@ public class Workspace extends javax.swing.JFrame{
         );
         pnlPrimLayout.setVerticalGroup(
             pnlPrimLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 551, Short.MAX_VALUE)
+            .addGap(0, 552, Short.MAX_VALUE)
         );
 
         tabPane.addTab("Prim", pnlPrim);
@@ -111,7 +116,15 @@ public class Workspace extends javax.swing.JFrame{
             }
         ));
         tblSet.setToolTipText("<html>\n<h4 style=\"color: blue\">Fill in table with ITEMS and their VALUE </h4>\n<table style=\"width:50%\">\n  <tr>\n     <th>Item</th>\n     <th>Value</th>\t\t\n  </tr>\n  <tr>\n    <td>Knife</td>\n    <td>50</td>\n  </tr>\n  <tr>\n    <td>Rope</td>\n    <td>90.0</td> \n  </tr>\n</table>");
+        tblSet.setCellSelectionEnabled(true);
         jScrollPane1.setViewportView(tblSet);
+
+        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(102, 0, 102));
+        jLabel1.setText("Capacity:");
+
+        txtCapacity.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
 
         javax.swing.GroupLayout pnlKnapLayout = new javax.swing.GroupLayout(pnlKnap);
         pnlKnap.setLayout(pnlKnapLayout);
@@ -119,7 +132,12 @@ public class Workspace extends javax.swing.JFrame{
             pnlKnapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlKnapLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlKnapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(pnlKnapLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtCapacity))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 34, Short.MAX_VALUE)
                 .addComponent(pbCapacity, javax.swing.GroupLayout.PREFERRED_SIZE, 567, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
@@ -127,7 +145,11 @@ public class Workspace extends javax.swing.JFrame{
         pnlKnapLayout.setVerticalGroup(
             pnlKnapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlKnapLayout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(pnlKnapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(txtCapacity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnlKnapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(pbCapacity, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -326,7 +348,10 @@ public class Workspace extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblPlayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPlayMouseClicked
-        startAlgorithm(1);
+        if(tabPane.getSelectedIndex() == 0)
+            startAlgorithm(1);
+        else 
+            launchKnapsack();
     }//GEN-LAST:event_lblPlayMouseClicked
 
     private void lblPrevMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPrevMouseClicked
@@ -359,6 +384,7 @@ public class Workspace extends javax.swing.JFrame{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem exKnap;
     private javax.swing.JMenuItem exPrim;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -382,6 +408,7 @@ public class Workspace extends javax.swing.JFrame{
     private javax.swing.JPanel pnlPrimOptions;
     private javax.swing.JTabbedPane tabPane;
     private javax.swing.JTable tblSet;
+    private javax.swing.JTextField txtCapacity;
     // End of variables declaration//GEN-END:variables
 
     private boolean primLaunched = false;
@@ -623,6 +650,28 @@ public class Workspace extends javax.swing.JFrame{
         timer.start();
     }
 
+    public List<Item> getTableData () {
+        DefaultTableModel dtm = (DefaultTableModel) tblSet.getModel();
+        int nRow = dtm.getRowCount();
+        List<Item> items = new LinkedList<>();
+        
+        for (int i = 0; i < nRow; i++){
+            Item newItem = new Item();
+            newItem.label = String.valueOf(dtm.getValueAt(i,0));
+            newItem.value = Double.parseDouble(String.valueOf(dtm.getValueAt(i,1)));
+            newItem.weight = Double.parseDouble(String.valueOf(dtm.getValueAt(i,2)));
+            items.add(newItem);
+        }
+        
+        return items;
+    }
+    
+    public void launchKnapsack(){
+        int capacity = Integer.parseInt(txtCapacity.getText());
+        DynamicProgrammingSolver dps = new DynamicProgrammingSolver(getTableData(), capacity);
+        System.out.println(dps.solve());
+    }
+    
 }
 
 class ListenableUndirectedWeightedGraph<V, E> extends DefaultListenableGraph<V, E> implements UndirectedGraph<V, E> 

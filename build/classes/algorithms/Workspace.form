@@ -157,7 +157,7 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="551" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="552" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -186,9 +186,16 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="212" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="txtCapacity" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="jScrollPane1" min="-2" pref="212" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace type="unrelated" pref="34" max="32767" attributes="0"/>
                       <Component id="pbCapacity" min="-2" pref="567" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
@@ -198,7 +205,12 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="36" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtCapacity" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="pbCapacity" min="-2" pref="59" max="-2" attributes="0"/>
                           <Component id="jScrollPane1" min="-2" pref="504" max="-2" attributes="0"/>
@@ -232,6 +244,7 @@
                       </Table>
                     </Property>
                     <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&#xa;&lt;h4 style=&quot;color: blue&quot;&gt;Fill in table with ITEMS and their VALUE &lt;/h4&gt;&#xa;&lt;table style=&quot;width:50%&quot;&gt;&#xa;  &lt;tr&gt;&#xa;     &lt;th&gt;Item&lt;/th&gt;&#xa;     &lt;th&gt;Value&lt;/th&gt;&#x9;&#x9;&#xa;  &lt;/tr&gt;&#xa;  &lt;tr&gt;&#xa;    &lt;td&gt;Knife&lt;/td&gt;&#xa;    &lt;td&gt;50&lt;/td&gt;&#xa;  &lt;/tr&gt;&#xa;  &lt;tr&gt;&#xa;    &lt;td&gt;Rope&lt;/td&gt;&#xa;    &lt;td&gt;90.0&lt;/td&gt; &#xa;  &lt;/tr&gt;&#xa;&lt;/table&gt;"/>
+                    <Property name="cellSelectionEnabled" type="boolean" value="true"/>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
@@ -258,6 +271,29 @@
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JLabel" name="jLabel1">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" red="0" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="14" style="3"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="66" green="0" red="66" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Capacity:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtCapacity">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder roundedCorners="true" thickness="2"/>
+                  </Border>
+                </Property>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
       </SubComponents>
