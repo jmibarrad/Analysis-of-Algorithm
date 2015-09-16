@@ -55,6 +55,7 @@ public class Workspace extends javax.swing.JFrame{
         tblSet = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         txtCapacity = new javax.swing.JTextField();
+        pbWeight = new javax.swing.JProgressBar();
         jPanel1 = new javax.swing.JPanel();
         lblNext = new javax.swing.JLabel();
         lblPlay = new javax.swing.JLabel();
@@ -67,6 +68,7 @@ public class Workspace extends javax.swing.JFrame{
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         lblCapacity = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menuPrim = new javax.swing.JMenu();
@@ -103,7 +105,8 @@ public class Workspace extends javax.swing.JFrame{
         pnlKnap.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153), 3));
 
         tblSet.setAutoCreateRowSorter(true);
-        tblSet.setFont(new java.awt.Font("Aharoni", 1, 12)); // NOI18N
+        tblSet.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tblSet.setFont(new java.awt.Font("Corbel", 0, 12)); // NOI18N
         tblSet.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -117,6 +120,8 @@ public class Workspace extends javax.swing.JFrame{
         ));
         tblSet.setToolTipText("<html>\n<h4 style=\"color: blue\">Fill in table with ITEMS and their VALUE </h4>\n<table style=\"width:50%\">\n  <tr>\n     <th>Item</th>\n     <th>Value</th>\t\t\n  </tr>\n  <tr>\n    <td>Knife</td>\n    <td>50</td>\n  </tr>\n  <tr>\n    <td>Rope</td>\n    <td>90.0</td> \n  </tr>\n</table>");
         tblSet.setCellSelectionEnabled(true);
+        tblSet.setGridColor(new java.awt.Color(0, 0, 0));
+        tblSet.setSelectionBackground(new java.awt.Color(235, 232, 232));
         jScrollPane1.setViewportView(tblSet);
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
@@ -139,7 +144,9 @@ public class Workspace extends javax.swing.JFrame{
                         .addComponent(txtCapacity))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 34, Short.MAX_VALUE)
-                .addComponent(pbCapacity, javax.swing.GroupLayout.PREFERRED_SIZE, 567, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlKnapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pbCapacity, javax.swing.GroupLayout.PREFERRED_SIZE, 567, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pbWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 567, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27))
         );
         pnlKnapLayout.setVerticalGroup(
@@ -149,9 +156,12 @@ public class Workspace extends javax.swing.JFrame{
                 .addGroup(pnlKnapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
                     .addComponent(txtCapacity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addGroup(pnlKnapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(pbCapacity, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnlKnapLayout.createSequentialGroup()
+                        .addComponent(pbWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(pbCapacity, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -242,7 +252,7 @@ public class Workspace extends javax.swing.JFrame{
         );
 
         pnlKnapOptions.setBackground(new java.awt.Color(255, 255, 255));
-        pnlKnapOptions.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 204, 0), 2, true), "Knapsack", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Trebuchet MS", 1, 14), new java.awt.Color(204, 51, 0))); // NOI18N
+        pnlKnapOptions.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 102, 0), 2, true), "Knapsack", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Trebuchet MS", 1, 14), new java.awt.Color(204, 51, 0))); // NOI18N
 
         lblWeight.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
         lblWeight.setText("-");
@@ -258,6 +268,13 @@ public class Workspace extends javax.swing.JFrame{
         lblCapacity.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
         lblCapacity.setText("-");
 
+        jButton1.setText("Add Row");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlKnapOptionsLayout = new javax.swing.GroupLayout(pnlKnapOptions);
         pnlKnapOptions.setLayout(pnlKnapOptionsLayout);
         pnlKnapOptionsLayout.setHorizontalGroup(
@@ -265,13 +282,19 @@ public class Workspace extends javax.swing.JFrame{
             .addGroup(pnlKnapOptionsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlKnapOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                .addGroup(pnlKnapOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblCapacity, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21))
+                    .addGroup(pnlKnapOptionsLayout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblCapacity, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21))
+                    .addGroup(pnlKnapOptionsLayout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(24, Short.MAX_VALUE))
+                    .addGroup(pnlKnapOptionsLayout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         pnlKnapOptionsLayout.setVerticalGroup(
             pnlKnapOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -280,10 +303,12 @@ public class Workspace extends javax.swing.JFrame{
                 .addGroup(pnlKnapOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(lblCapacity))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addGroup(pnlKnapOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlKnapOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(lblWeight))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -326,19 +351,20 @@ public class Workspace extends javax.swing.JFrame{
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(160, 160, 160)
-                .addComponent(pnlPrimOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addComponent(pnlKnapOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator1)
-                    .addComponent(tabPane))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(160, 160, 160)
+                        .addComponent(pnlPrimOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addComponent(pnlKnapOptions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator1)
+                            .addComponent(tabPane))))
                 .addContainerGap())
         );
 
@@ -363,6 +389,11 @@ public class Workspace extends javax.swing.JFrame{
         startAlgorithm(3);
     }//GEN-LAST:event_lblNextMouseClicked
 
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        DefaultTableModel dtm = (DefaultTableModel) tblSet.getModel();
+        dtm.addRow(new Object[3]);
+    }//GEN-LAST:event_jButton1MouseClicked
+
     public static void main(String args[]) {
 
         try {
@@ -384,6 +415,7 @@ public class Workspace extends javax.swing.JFrame{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem exKnap;
     private javax.swing.JMenuItem exPrim;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -402,6 +434,7 @@ public class Workspace extends javax.swing.JFrame{
     private javax.swing.JMenu menuKnap;
     private javax.swing.JMenu menuPrim;
     private javax.swing.JProgressBar pbCapacity;
+    private javax.swing.JProgressBar pbWeight;
     private javax.swing.JPanel pnlKnap;
     private javax.swing.JPanel pnlKnapOptions;
     private javax.swing.JPanel pnlPrim;
