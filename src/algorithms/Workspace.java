@@ -47,6 +47,9 @@ public class Workspace extends javax.swing.JFrame{
         tabPane = new javax.swing.JTabbedPane();
         pnlPrim = new javax.swing.JPanel();
         pnlKnap = new javax.swing.JPanel();
+        pbCapacity = new javax.swing.JProgressBar();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblSet = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         lblNext = new javax.swing.JLabel();
         lblPlay = new javax.swing.JLabel();
@@ -61,7 +64,10 @@ public class Workspace extends javax.swing.JFrame{
         lblCapacity = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        menuPrim = new javax.swing.JMenu();
+        exPrim = new javax.swing.JMenuItem();
+        menuKnap = new javax.swing.JMenu();
+        exKnap = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,7 +79,7 @@ public class Workspace extends javax.swing.JFrame{
         tabPane.setBackground(new java.awt.Color(51, 204, 0));
 
         pnlPrim.setBackground(new java.awt.Color(255, 255, 255));
-        pnlPrim.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 153, 0), 3, true));
+        pnlPrim.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 0), 3));
 
         javax.swing.GroupLayout pnlPrimLayout = new javax.swing.GroupLayout(pnlPrim);
         pnlPrim.setLayout(pnlPrimLayout);
@@ -91,15 +97,41 @@ public class Workspace extends javax.swing.JFrame{
         pnlKnap.setBackground(new java.awt.Color(255, 255, 255));
         pnlKnap.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153), 3));
 
+        tblSet.setAutoCreateRowSorter(true);
+        tblSet.setFont(new java.awt.Font("Aharoni", 1, 12)); // NOI18N
+        tblSet.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Item", "Value", "Weight"
+            }
+        ));
+        tblSet.setToolTipText("<html>\n<h4 style=\"color: blue\">Fill in table with ITEMS and their VALUE </h4>\n<table style=\"width:50%\">\n  <tr>\n     <th>Item</th>\n     <th>Value</th>\t\t\n  </tr>\n  <tr>\n    <td>Knife</td>\n    <td>50</td>\n  </tr>\n  <tr>\n    <td>Rope</td>\n    <td>90.0</td> \n  </tr>\n</table>");
+        jScrollPane1.setViewportView(tblSet);
+
         javax.swing.GroupLayout pnlKnapLayout = new javax.swing.GroupLayout(pnlKnap);
         pnlKnap.setLayout(pnlKnapLayout);
         pnlKnapLayout.setHorizontalGroup(
             pnlKnapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 850, Short.MAX_VALUE)
+            .addGroup(pnlKnapLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 34, Short.MAX_VALUE)
+                .addComponent(pbCapacity, javax.swing.GroupLayout.PREFERRED_SIZE, 567, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
         );
         pnlKnapLayout.setVerticalGroup(
             pnlKnapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 551, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlKnapLayout.createSequentialGroup()
+                .addContainerGap(36, Short.MAX_VALUE)
+                .addGroup(pnlKnapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(pbCapacity, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         tabPane.addTab("Knapsack", pnlKnap);
@@ -233,12 +265,24 @@ public class Workspace extends javax.swing.JFrame{
                 .addContainerGap())
         );
 
-        jMenu1.setText("File");
+        jMenu1.setText("Examples");
         jMenu1.setToolTipText("");
-        jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
+        menuPrim.setText("Prim");
+
+        exPrim.setText("Example #1");
+        menuPrim.add(exPrim);
+
+        jMenu1.add(menuPrim);
+
+        menuKnap.setText("Knapsack");
+
+        exKnap.setText("Example #1");
+        menuKnap.add(exKnap);
+
+        jMenu1.add(menuKnap);
+
+        jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
 
@@ -313,13 +357,15 @@ public class Workspace extends javax.swing.JFrame{
     } 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem exKnap;
+    private javax.swing.JMenuItem exPrim;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblCapacity;
     private javax.swing.JLabel lblMST;
@@ -327,11 +373,15 @@ public class Workspace extends javax.swing.JFrame{
     private javax.swing.JLabel lblPlay;
     private javax.swing.JLabel lblPrev;
     private javax.swing.JLabel lblWeight;
+    private javax.swing.JMenu menuKnap;
+    private javax.swing.JMenu menuPrim;
+    private javax.swing.JProgressBar pbCapacity;
     private javax.swing.JPanel pnlKnap;
     private javax.swing.JPanel pnlKnapOptions;
     private javax.swing.JPanel pnlPrim;
     private javax.swing.JPanel pnlPrimOptions;
     private javax.swing.JTabbedPane tabPane;
+    private javax.swing.JTable tblSet;
     // End of variables declaration//GEN-END:variables
 
     private boolean primLaunched = false;
