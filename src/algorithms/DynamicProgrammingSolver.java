@@ -15,6 +15,8 @@ import java.util.*;
 public class DynamicProgrammingSolver extends KnapsackSolver {
    
    private double[][] table;
+   public double weight;
+   public ArrayList<Integer> result = new ArrayList<>();
    
    public DynamicProgrammingSolver(List<Item> items, int capacity) {
       super(items, capacity);
@@ -34,7 +36,6 @@ public class DynamicProgrammingSolver extends KnapsackSolver {
       
       KnapsackSolution best = traceTable();
       
-      best.approach = "Dynamic Programming solution";
       return best;
    }
    

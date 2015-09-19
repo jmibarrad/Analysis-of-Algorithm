@@ -16,6 +16,7 @@ public class Item {
     public String label;
     public double value;
     public double weight;
+    public int row;
     
     public static Comparator<Item> byRatio() {
       return (Item i1, Item i2) -> Double.compare(i2.getRatio(), i1.getRatio());

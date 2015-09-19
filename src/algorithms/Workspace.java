@@ -4,6 +4,7 @@ package algorithms;
 import ext.JGraphModelAdapter;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -12,16 +13,22 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.Timer;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import org.jgraph.JGraph;
 import org.jgraph.graph.AttributeMap;
 import org.jgraph.graph.DefaultGraphCell;
@@ -50,7 +57,7 @@ public class Workspace extends javax.swing.JFrame{
         tabPane = new javax.swing.JTabbedPane();
         pnlPrim = new javax.swing.JPanel();
         pnlKnap = new javax.swing.JPanel();
-        pbCapacity = new javax.swing.JProgressBar();
+        pbValue = new javax.swing.JProgressBar();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblSet = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
@@ -69,6 +76,7 @@ public class Workspace extends javax.swing.JFrame{
         jLabel4 = new javax.swing.JLabel();
         lblCapacity = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menuPrim = new javax.swing.JMenu();
@@ -145,7 +153,7 @@ public class Workspace extends javax.swing.JFrame{
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 34, Short.MAX_VALUE)
                 .addGroup(pnlKnapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pbCapacity, javax.swing.GroupLayout.PREFERRED_SIZE, 567, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pbValue, javax.swing.GroupLayout.PREFERRED_SIZE, 567, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pbWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 567, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27))
         );
@@ -161,7 +169,7 @@ public class Workspace extends javax.swing.JFrame{
                     .addGroup(pnlKnapLayout.createSequentialGroup()
                         .addComponent(pbWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(pbCapacity, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(pbValue, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -216,8 +224,6 @@ public class Workspace extends javax.swing.JFrame{
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        lblPrev.getAccessibleContext().setAccessibleName("");
-
         pnlPrimOptions.setBackground(new java.awt.Color(255, 255, 255));
         pnlPrimOptions.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 102), 2, true), "PRIM", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Trebuchet MS", 1, 14), new java.awt.Color(0, 102, 102))); // NOI18N
 
@@ -259,7 +265,7 @@ public class Workspace extends javax.swing.JFrame{
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(204, 102, 0));
-        jLabel3.setText("Capacity:");
+        jLabel3.setText("Value");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 102, 153));
@@ -275,10 +281,22 @@ public class Workspace extends javax.swing.JFrame{
             }
         });
 
+        jButton2.setText("Remove Row");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlKnapOptionsLayout = new javax.swing.GroupLayout(pnlKnapOptions);
         pnlKnapOptions.setLayout(pnlKnapOptionsLayout);
         pnlKnapOptionsLayout.setHorizontalGroup(
             pnlKnapOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlKnapOptionsLayout.createSequentialGroup()
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(4, 4, 4))
             .addGroup(pnlKnapOptionsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlKnapOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -289,12 +307,9 @@ public class Workspace extends javax.swing.JFrame{
                         .addGap(21, 21, 21))
                     .addGroup(pnlKnapOptionsLayout.createSequentialGroup()
                         .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
+                        .addGap(22, 22, 22)
                         .addComponent(lblWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(24, Short.MAX_VALUE))
-                    .addGroup(pnlKnapOptionsLayout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addContainerGap(20, Short.MAX_VALUE))))
         );
         pnlKnapOptionsLayout.setVerticalGroup(
             pnlKnapOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -304,11 +319,13 @@ public class Workspace extends javax.swing.JFrame{
                     .addComponent(jLabel3)
                     .addComponent(lblCapacity))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlKnapOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblWeight)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlKnapOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(lblWeight))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -394,6 +411,11 @@ public class Workspace extends javax.swing.JFrame{
         dtm.addRow(new Object[3]);
     }//GEN-LAST:event_jButton1MouseClicked
 
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        DefaultTableModel dtm = (DefaultTableModel) tblSet.getModel();
+        dtm.removeRow(dtm.getRowCount()-1);
+    }//GEN-LAST:event_jButton2MouseClicked
+
     public static void main(String args[]) {
 
         try {
@@ -416,6 +438,7 @@ public class Workspace extends javax.swing.JFrame{
     private javax.swing.JMenuItem exKnap;
     private javax.swing.JMenuItem exPrim;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -433,7 +456,7 @@ public class Workspace extends javax.swing.JFrame{
     private javax.swing.JLabel lblWeight;
     private javax.swing.JMenu menuKnap;
     private javax.swing.JMenu menuPrim;
-    private javax.swing.JProgressBar pbCapacity;
+    private javax.swing.JProgressBar pbValue;
     private javax.swing.JProgressBar pbWeight;
     private javax.swing.JPanel pnlKnap;
     private javax.swing.JPanel pnlKnapOptions;
@@ -458,9 +481,10 @@ public class Workspace extends javax.swing.JFrame{
     protected Set<String> vertexSet;
     protected Set<DefaultWeightedEdge> edgeSet;
     private int currentPosition = 0;
-    private boolean isPlaying = true;
+    private final boolean isPlaying = true;
     private Timer timer;
-    private  ListenableUndirectedWeightedGraph<String, DefaultWeightedEdge> g ;   
+    private  ListenableUndirectedWeightedGraph<String, DefaultWeightedEdge> g;
+    KnapsackSolution ans;
     
     private void GraphFactory(){
     
@@ -683,28 +707,80 @@ public class Workspace extends javax.swing.JFrame{
         timer.start();
     }
 
+    List<Color> rowColours = Arrays.asList(
+        Color.GREEN,
+        Color.GREEN,
+        Color.GREEN
+    );
+    
     public List<Item> getTableData () {
         DefaultTableModel dtm = (DefaultTableModel) tblSet.getModel();
         int nRow = dtm.getRowCount();
         List<Item> items = new LinkedList<>();
-        
+        tblSet.setDefaultRenderer(Object.class, renderer);
+
         for (int i = 0; i < nRow; i++){
             Item newItem = new Item();
             newItem.label = String.valueOf(dtm.getValueAt(i,0));
             newItem.value = Double.parseDouble(String.valueOf(dtm.getValueAt(i,1)));
             newItem.weight = Double.parseDouble(String.valueOf(dtm.getValueAt(i,2)));
+            newItem.row = i;
+            
             items.add(newItem);
         }
+        dtm.fireTableRowsUpdated(0, 0);
         
+        setProgressBarsMaximumValues(items);
+        pbValue.setMaximum((int)maxValuePB);
+        pbWeight.setMaximum((int)maxWeightPB);
         return items;
     }
+    
+    TableCellRenderer renderer = new TableCellRenderer() {
+
+    JLabel label = new JLabel();
+
+        @Override
+        public Component getTableCellRendererComponent(JTable table,
+                Object value, boolean isSelected, boolean hasFocus,
+                int row, int column) {
+            label.setOpaque(true);
+            label.setText("" + value);
+            Color alternate = UIManager.getColor("Table.alternateRowColor");
+            if (row % 2 == 1) {
+                label.setBackground(alternate);
+            } else {
+                label.setBackground(Color.RED);
+            }
+            return label;
+        }
+                        
+    };
     
     public void launchKnapsack(){
         int capacity = Integer.parseInt(txtCapacity.getText());
         DynamicProgrammingSolver dps = new DynamicProgrammingSolver(getTableData(), capacity);
-        System.out.println(dps.solve());
+        ans = dps.solve();
+        lblWeight.setText(String.valueOf(ans.weight));
+        lblCapacity.setText(String.valueOf(ans.value));
+        pbWeight.setValue((int)Math.ceil(ans.weight));
+        pbValue.setValue((int)Math.ceil(ans.weight));
     }
     
+    int maxValuePB = 0; 
+    int maxWeightPB = 0;     
+    public void setProgressBarsMaximumValues(List<Item> items){
+        double maxWeight = 0;        
+        double maxValue = 0;   
+        for(Item item: items){
+            maxValue += item.value;
+            maxWeight += item.weight;
+        }
+        maxValuePB = (int)Math.ceil(maxValue);
+        maxWeightPB = (int)Math.ceil(maxWeight);
+    }
+        
+
 }
 
 class ListenableUndirectedWeightedGraph<V, E> extends DefaultListenableGraph<V, E> implements UndirectedGraph<V, E> 
