@@ -102,7 +102,7 @@ public class Workspace extends javax.swing.JFrame{
         );
         pnlPrimLayout.setVerticalGroup(
             pnlPrimLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 552, Short.MAX_VALUE)
+            .addGap(0, 561, Short.MAX_VALUE)
         );
 
         tabPane.addTab("Prim", pnlPrim);
@@ -110,9 +110,17 @@ public class Workspace extends javax.swing.JFrame{
         pnlKnap.setBackground(new java.awt.Color(255, 255, 255));
         pnlKnap.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153), 3));
 
+        pbValue.setBackground(new java.awt.Color(255, 255, 255));
+        pbValue.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        pbValue.setForeground(new java.awt.Color(102, 204, 0));
+        pbValue.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        pbValue.setOpaque(true);
+        pbValue.setString("0.00");
+        pbValue.setStringPainted(true);
+
         tblSet.setAutoCreateRowSorter(true);
         tblSet.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        tblSet.setFont(new java.awt.Font("Corbel", 0, 12)); // NOI18N
+        tblSet.setFont(new java.awt.Font("Trebuchet MS", 0, 13)); // NOI18N
         tblSet.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -136,6 +144,13 @@ public class Workspace extends javax.swing.JFrame{
         jLabel1.setText("Capacity:");
 
         txtCapacity.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+
+        pbWeight.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        pbWeight.setForeground(new java.awt.Color(255, 0, 51));
+        pbWeight.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        pbWeight.setOpaque(true);
+        pbWeight.setString("0.00");
+        pbWeight.setStringPainted(true);
 
         javax.swing.GroupLayout pnlKnapLayout = new javax.swing.GroupLayout(pnlKnap);
         pnlKnap.setLayout(pnlKnapLayout);
@@ -162,12 +177,13 @@ public class Workspace extends javax.swing.JFrame{
                 .addGroup(pnlKnapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
                     .addComponent(txtCapacity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(pnlKnapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pnlKnapLayout.createSequentialGroup()
+                        .addComponent(pbValue, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(106, 106, 106)
                         .addComponent(pbWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(pbValue, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(63, 63, 63))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -258,7 +274,7 @@ public class Workspace extends javax.swing.JFrame{
         pnlKnapOptions.setBackground(new java.awt.Color(255, 255, 255));
         pnlKnapOptions.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 102, 0), 2, true), "Knapsack", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Trebuchet MS", 1, 14), new java.awt.Color(204, 51, 0))); // NOI18N
 
-        lblWeight.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
+        lblWeight.setFont(new java.awt.Font("Tahoma", 3, 15)); // NOI18N
         lblWeight.setText("-");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -269,7 +285,7 @@ public class Workspace extends javax.swing.JFrame{
         jLabel4.setForeground(new java.awt.Color(0, 102, 153));
         jLabel4.setText("Total Weight:");
 
-        lblCapacity.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
+        lblCapacity.setFont(new java.awt.Font("Tahoma", 3, 15)); // NOI18N
         lblCapacity.setText("-");
 
         jButton1.setText("Add Row");
@@ -293,7 +309,7 @@ public class Workspace extends javax.swing.JFrame{
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlKnapOptionsLayout.createSequentialGroup()
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
                 .addGap(4, 4, 4))
             .addGroup(pnlKnapOptionsLayout.createSequentialGroup()
                 .addContainerGap()
@@ -301,13 +317,12 @@ public class Workspace extends javax.swing.JFrame{
                     .addGroup(pnlKnapOptionsLayout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblCapacity, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 21, 21))
+                        .addComponent(lblCapacity, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlKnapOptionsLayout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(22, 22, 22)
-                        .addComponent(lblWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(20, Short.MAX_VALUE))))
+                        .addComponent(lblWeight, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         pnlKnapOptionsLayout.setVerticalGroup(
             pnlKnapOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -316,14 +331,14 @@ public class Workspace extends javax.swing.JFrame{
                 .addGroup(pnlKnapOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(lblCapacity))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlKnapOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblWeight)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(pnlKnapOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel4)
+                    .addComponent(lblWeight))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pnlKnapOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -754,13 +769,12 @@ public class Workspace extends javax.swing.JFrame{
             items.add(newItem);
         }
         
-        
         setProgressBarsMaximumValues(items);
         pbValue.setMaximum((int)maxValuePB);
         pbWeight.setMaximum((int)maxWeightPB);
         return items;
     }
-    
+       
     TableCellRenderer renderer = new TableCellRenderer() {
         JLabel label = new JLabel();
 
@@ -768,12 +782,21 @@ public class Workspace extends javax.swing.JFrame{
         public Component getTableCellRendererComponent(JTable table,
                 Object value, boolean isSelected, boolean hasFocus,
                 int row, int column) {
-               
+                               
                 label.setOpaque(true);
                 label.setText(value.toString());
-                label.setForeground(Color.WHITE);
-                label.setBackground(Color.GREEN);
-           
+                if(isKnapPlaying){
+                    label.setForeground(Color.WHITE);
+                    label.setBackground(Color.GREEN);
+                }else{
+                    if(row % 2 == 0){
+                        label.setForeground(Color.BLACK);
+                        label.setBackground(new Color(242, 242, 242));
+                    }else{
+                        label.setForeground(Color.BLACK);
+                        label.setBackground(Color.WHITE);
+                    }    
+                }
             return label;
         }
                         
@@ -811,8 +834,12 @@ public class Workspace extends javax.swing.JFrame{
         DefaultTableModel dtm = (DefaultTableModel) tblSet.getModel();
         tempValue += ans.items.get(currentPositionKnapsack).value;
         tempWeight += ans.items.get(currentPositionKnapsack).weight;       
+        
         pbWeight.setValue((int)tempWeight);
         pbValue.setValue((int)tempValue);
+        pbWeight.setString(String.valueOf(tempWeight));
+        pbValue.setString(String.valueOf(tempValue));
+        
         int row = ans.items.get(currentPositionKnapsack).row;
         dtm.fireTableRowsUpdated(row , row);
     }
