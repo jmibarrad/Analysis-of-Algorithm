@@ -71,6 +71,7 @@ public class Workspace extends javax.swing.JFrame{
         pnlPrimOptions = new javax.swing.JPanel();
         lblMST = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
         pnlKnapOptions = new javax.swing.JPanel();
         lblWeight = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -280,18 +281,34 @@ public class Workspace extends javax.swing.JFrame{
         jLabel2.setForeground(new java.awt.Color(102, 0, 102));
         jLabel2.setText("Minimum Spanning Tree:");
 
+        jButton3.setBackground(new java.awt.Color(153, 153, 153));
+        jButton3.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        jButton3.setText("Clear Graph");
+        jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlPrimOptionsLayout = new javax.swing.GroupLayout(pnlPrimOptions);
         pnlPrimOptions.setLayout(pnlPrimOptionsLayout);
         pnlPrimOptionsLayout.setHorizontalGroup(
             pnlPrimOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPrimOptionsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
-                .addContainerGap(29, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPrimOptionsLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblMST, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlPrimOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlPrimOptionsLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPrimOptionsLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lblMST, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPrimOptionsLayout.createSequentialGroup()
+                .addContainerGap(25, Short.MAX_VALUE)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
         );
         pnlPrimOptionsLayout.setVerticalGroup(
             pnlPrimOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -299,8 +316,10 @@ public class Workspace extends javax.swing.JFrame{
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblMST, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
-                .addGap(14, 14, 14))
+                .addComponent(lblMST)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pnlKnapOptions.setBackground(new java.awt.Color(255, 255, 255));
@@ -418,9 +437,9 @@ public class Workspace extends javax.swing.JFrame{
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(160, 160, 160)
+                        .addGap(121, 121, 121)
                         .addComponent(pnlPrimOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
+                        .addGap(27, 27, 27)
                         .addComponent(pnlKnapOptions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -463,6 +482,15 @@ public class Workspace extends javax.swing.JFrame{
         dtm.removeRow(dtm.getRowCount()-1);
     }//GEN-LAST:event_jButton2MouseClicked
 
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        g.removeAllVertices(g);
+        count = 65;
+        source = null; 
+        destiny = null;
+        hasSource = false;
+        hasDestiny = false;
+    }//GEN-LAST:event_jButton3MouseClicked
+
     public static void main(String args[]) {
 
         try {
@@ -486,6 +514,7 @@ public class Workspace extends javax.swing.JFrame{
     private javax.swing.JMenuItem exPrim;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -616,7 +645,7 @@ public class Workspace extends javax.swing.JFrame{
               primLaunched = false; //if a new vertex or edge is created prim has to be relaunch
             }
         });
-
+        
     }
     
     private void launchPrim(){
