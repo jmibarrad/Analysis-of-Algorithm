@@ -20,13 +20,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.Timer;
-import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import org.jgraph.JGraph;
@@ -393,8 +391,10 @@ public class Workspace extends javax.swing.JFrame{
     private void lblPlayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPlayMouseClicked
         if(tabPane.getSelectedIndex() == 0)
             startAlgorithm(1);
-        else 
-            launchKnapsack();
+        else if(tabPane.getSelectedIndex() == 1){ 
+            isKnapPlaying = true;
+            playKnapsack();
+        }    
     }//GEN-LAST:event_lblPlayMouseClicked
 
     private void lblPrevMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPrevMouseClicked
@@ -468,7 +468,7 @@ public class Workspace extends javax.swing.JFrame{
     // End of variables declaration//GEN-END:variables
 
     private boolean primLaunched = false;
-    private static final Color DEFAULT_BG_COLOR = Color.decode("#FAFBFF");
+    private boolean knapLaunched = false;
     private static final Dimension DEFAULT_SIZE = new Dimension(1256, 700);
     private static int count = 65;
     protected ArrayList<ColorObjectStructure<String,DefaultWeightedEdge>> graphColorList;
@@ -481,10 +481,13 @@ public class Workspace extends javax.swing.JFrame{
     protected Set<String> vertexSet;
     protected Set<DefaultWeightedEdge> edgeSet;
     private int currentPosition = 0;
+    private int currentPositionKnapsack = 0;
     private final boolean isPlaying = true;
+    private boolean isKnapPlaying = false; 
     private Timer timer;
+    private Timer timer2;
     private  ListenableUndirectedWeightedGraph<String, DefaultWeightedEdge> g;
-    KnapsackSolution ans;
+    private KnapsackSolution ans;
     
     private void GraphFactory(){
     
@@ -713,6 +716,28 @@ public class Workspace extends javax.swing.JFrame{
         Color.GREEN
     );
     
+    private void playKnapsack(){
+        if(!knapLaunched){
+            launchKnapsack();
+            knapLaunched = true;
+        } 
+        
+        ActionListener a = (ActionEvent evt) -> {
+            
+            if(isKnapPlaying && currentPositionKnapsack < lengthknapsack){
+                paintTable();
+                currentPositionKnapsack++;
+            }else{
+                timer2.stop();
+                isKnapPlaying = false;
+            }
+            
+        };
+
+        timer2 = new Timer(1000, a);
+        timer2.start();
+    }
+    
     public List<Item> getTableData () {
         DefaultTableModel dtm = (DefaultTableModel) tblSet.getModel();
         int nRow = dtm.getRowCount();
@@ -728,7 +753,7 @@ public class Workspace extends javax.swing.JFrame{
             
             items.add(newItem);
         }
-        dtm.fireTableRowsUpdated(0, 0);
+        
         
         setProgressBarsMaximumValues(items);
         pbValue.setMaximum((int)maxValuePB);
@@ -737,21 +762,18 @@ public class Workspace extends javax.swing.JFrame{
     }
     
     TableCellRenderer renderer = new TableCellRenderer() {
-
-    JLabel label = new JLabel();
+        JLabel label = new JLabel();
 
         @Override
         public Component getTableCellRendererComponent(JTable table,
                 Object value, boolean isSelected, boolean hasFocus,
                 int row, int column) {
-            label.setOpaque(true);
-            label.setText("" + value);
-            Color alternate = UIManager.getColor("Table.alternateRowColor");
-            if (row % 2 == 1) {
-                label.setBackground(alternate);
-            } else {
-                label.setBackground(Color.RED);
-            }
+               
+                label.setOpaque(true);
+                label.setText(value.toString());
+                label.setForeground(Color.WHITE);
+                label.setBackground(Color.GREEN);
+           
             return label;
         }
                         
@@ -763,8 +785,7 @@ public class Workspace extends javax.swing.JFrame{
         ans = dps.solve();
         lblWeight.setText(String.valueOf(ans.weight));
         lblCapacity.setText(String.valueOf(ans.value));
-        pbWeight.setValue((int)Math.ceil(ans.weight));
-        pbValue.setValue((int)Math.ceil(ans.weight));
+       lengthknapsack = ans.items.size();
     }
     
     int maxValuePB = 0; 
@@ -779,7 +800,22 @@ public class Workspace extends javax.swing.JFrame{
         maxValuePB = (int)Math.ceil(maxValue);
         maxWeightPB = (int)Math.ceil(maxWeight);
     }
-        
+
+    List<Double> weightStep = new ArrayList<>();
+    List<Double> valueStep = new ArrayList<>();
+    double tempWeight = 0;
+    double tempValue = 0;
+    private int lengthknapsack = 0;
+    
+    void paintTable(){
+        DefaultTableModel dtm = (DefaultTableModel) tblSet.getModel();
+        tempValue += ans.items.get(currentPositionKnapsack).value;
+        tempWeight += ans.items.get(currentPositionKnapsack).weight;       
+        pbWeight.setValue((int)tempWeight);
+        pbValue.setValue((int)tempValue);
+        int row = ans.items.get(currentPositionKnapsack).row;
+        dtm.fireTableRowsUpdated(row , row);
+    }
 
 }
 
