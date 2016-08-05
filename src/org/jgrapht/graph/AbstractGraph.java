@@ -121,6 +121,14 @@ public abstract class AbstractGraph<V, E>
         return modified;
     }
 
+    public <V,E> void removeAllVertices(Graph<V, E> graph) {
+		LinkedList<V> copy = new LinkedList<V>();
+		for (V v : graph.vertexSet()) {
+			copy.add(v);
+		}
+		graph.removeAllVertices(copy);
+    }
+    
     /**
      * Returns a string of the parenthesized pair (V, E) representing this
      * G=(V,E) graph. 'V' is the string representation of the vertex set, and
